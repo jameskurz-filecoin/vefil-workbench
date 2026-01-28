@@ -1,0 +1,11 @@
+# Include configuration files
+include src/vefil/config/defaults.yaml
+recursive-include src/vefil/config *.yaml
+
+# Include documentation
+include README.md
+include docs/*.md
+
+# Exclude compiled files
+global-exclude __pycache__
+global-exclude *.py[cod]

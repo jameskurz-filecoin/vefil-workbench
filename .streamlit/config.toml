@@ -1,0 +1,33 @@
+# Streamlit configuration for veFIL Tokenomics Workbench
+# https://docs.streamlit.io/library/advanced-features/configuration
+
+[theme]
+# Dark theme to match app CSS
+primaryColor = "#c58a44"
+backgroundColor = "#0f1419"
+secondaryBackgroundColor = "#1c232d"
+textColor = "#f2eadb"
+font = "sans serif"
+
+[server]
+# Enable CORS for embedding
+enableCORS = false
+enableXsrfProtection = true
+
+# File watcher (disable in production for performance)
+fileWatcherType = "auto"
+
+[browser]
+# Disable usage statistics collection
+gatherUsageStats = false
+
+[runner]
+# Magic commands enabled for cleaner code
+magicEnabled = true
+
+# Fast reruns for better UX
+fastReruns = true
+
+[client]
+# Show error details in development
+showErrorDetails = true

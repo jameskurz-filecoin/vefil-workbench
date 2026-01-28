@@ -1,0 +1,14 @@
+# veFIL Tokenomics Workbench - Python Dependencies
+
+# Install the local vefil package (required for imports)
+.
+
+# Core dependencies
+streamlit>=1.28.0
+pydantic>=2.0.0
+numpy>=1.24.0
+pandas>=2.0.0
+plotly>=5.17.0
+pyyaml>=6.0
+scipy>=1.11.0
+openai>=1.40.0

@@ -1,0 +1,137 @@
+# Default configuration parameters for veFIL Tokenomics Workbench
+#
+# This configuration achieves (pure reserve emissions):
+# - 30M locked @ 3 months, 79M @ 6 months, 112M @ 12 months
+# - APY: 12-13% stable (stays above 8% floor)
+# - Inflation: strongly negative throughout (-28% early, -0.2% steady-state)
+# - Reserve runway: ~20 years
+# - Emissions policy dynamically adjusts rate to maintain APY floor
+
+# Initial supply state (Filecoin, Jan 2026)
+# Conservation: total = circulating + reserve + other_allocations + lending_pool + sp_collateral + locked_vefil
+initial_supply:
+  total: 2000000000  # 2B FIL (max supply)
+  circulating: 817500000  # ~818M FIL circulating
+  reserve: 300000000  # 300M FIL mining reserve (funds veFIL reserve emissions)
+  other_allocations: 732500000  # SAFT, team, foundation, etc.
+  lending_pool: 50000000  # 50M FIL in lending markets
+  sp_collateral: 100000000  # 100M FIL as SP collateral
+  locked_vefil: 0  # Initial locked amount
+
+# Yield source configuration
+# Emissions come purely from the 300M mining reserve
+yield_source:
+  type: "reserve"
+  reserve_annual_rate: 0.02  # 2% starting rate, policy adjusts dynamically
+
+# Reward curve parameters
+reward_curve:
+  k: 1.5  # Duration exponent (k > 1 = convex, favors long locks)
+  max_duration_years: 5.0  # Maximum lock duration
+  min_duration_years: 0.25  # Minimum lock duration (3 months)
+
+# Market parameters
+market:
+  liquidity_regime: "medium"
+  order_book_depth: 10000000
+  market_multiplier: 1.75
+  volatility: 0.6
+
+# Capital flow assumptions
+capital_flow:
+  net_new_fraction: 0.4  # 40% of locks are net-new capital
+  recycled_fraction: 0.4  # 40% from idle holdings
+  cannibalized_fraction: 0.2  # 20% from lending/staking
+  sell_rate: 0.45  # 45% of unlocked rewards get sold
+
+# Opportunity cost alternatives
+alternatives:
+  ifil_apy: 0.09  # 9% iFIL lending yield
+  glif_apy: 0.09  # GLIF (aligned with iFIL)
+  defi_apy: 0.07  # 7% DeFi lending
+  risk_free_rate: 0.025  # 2.5% stablecoin baseline
+
+# User cohorts
+cohorts:
+  retail:
+    size_fraction: 0.5
+    required_premium: 0.02
+    avg_lock_size: 1000
+    avg_duration_years: 2.0
+  institutional:
+    size_fraction: 0.2
+    required_premium: 0.06
+    avg_lock_size: 50000
+    avg_duration_years: 4.0
+  storage_providers:
+    size_fraction: 0.2
+    required_premium: 0.04
+    avg_lock_size: 20000
+    avg_duration_years: 3.0
+  treasuries:
+    size_fraction: 0.1
+    required_premium: 0.015
+    avg_lock_size: 100000
+    avg_duration_years: 5.0
+
+# Lending market parameters
+lending:
+  base_rate: 0.08
+  utilization_elasticity: 2.0
+  sp_borrow_demand: 80000000
+
+# Adversarial scenarios
+adversarial:
+  hedging_funding_rate: 0.0001
+  hedging_borrow_rate: 0.001
+  wrapper_concentration_limit: 0.5
+  crisis_price_drop: 0.8
+
+# Externalities
+externalities:
+  network_growth_rate: 0.15  # 15% annual network growth
+  hardware_depreciation_years: 3.0
+  storage_fee_rate: 0.0001
+  s3_price_per_gb_month: 0.023
+
+# Simulation parameters
+simulation:
+  time_horizon_months: 60  # 5-year simulation
+  timestep_days: 30  # Monthly timesteps
+  monte_carlo_runs: 100
+  random_seed: 42
+  bootstrap_apy: 0.18  # 18% initial APY expectation (drives early adoption)
+  adoption_ramp_fraction: 0.20  # Front-loaded adoption curve
+  participation_elasticity: 2.8
+  addressable_cap: 0.17  # ~140M max lockable (17% of 818M circulating)
+  max_participation: 0.95
+  adjustment_tau_days: 60
+  max_step_lock_fraction: 0.05  # 5% max per step (allows faster early ramp)
+  relock_fraction_unlocked: 0.70  # 70% relock rate
+  relock_boost_on_competitive_apy: 0.20
+  relock_max_fraction: 0.95
+  duration_choice_temperature: 0.25
+  duration_exploration_fraction: 0.10
+
+# Network parameters (Filecoin fee revenue)
+network:
+  transaction_volume_base: 8000000  # ~8M transactions/day
+  fee_per_transaction: 0.002  # 0.002 FIL/tx = ~16,000 FIL/day fees
+
+# Emissions stabilizer policy
+# ENABLED - dynamically adjusts reserve rate to maintain APY floor
+emissions_policy:
+  enabled: true
+  lock_growth_target_annual: 0.01
+  lock_drawdown_threshold: 0.03
+  lock_growth_window_months: 6
+  apy_floor_buffer: 0.01  # Keep APY at least 1% above alternatives
+  max_effective_inflation: 0.00
+  growth_apy_boost: 0.02
+  cap_start_months: 12
+  lock_target_fil: 100000000
+  cap_ramp_months: 12
+  early_max_effective_inflation: 0.02
+  reserve_rate_min: 0.02  # Min 2%/yr
+  reserve_rate_max: 0.05  # Max 5%/yr
+  adjustment_speed: 0.40
