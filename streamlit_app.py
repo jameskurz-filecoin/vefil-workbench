@@ -1219,7 +1219,7 @@ def compute_milestone_summary(result, dt_days: float, horizon_months: int) -> pd
             "Emissions (M FIL/yr)": annual_reserve_emission / 1e6,
             "APY (%)": apy * 100.0,
             "Lock:Emission": lock_emission_ratio,
-            "Inflation (%)": met.get("effective_inflation", 0.0) * 100.0,
+            "Inst. Inflation (%)": met.get("effective_inflation", 0.0) * 100.0,
             "Reserve (M FIL)": state.reserve / 1e6,
             "Runway (yrs)": runway_years,
         })
@@ -1297,7 +1297,7 @@ def render_milestone_summary(result):
     display_df["Lock:Emission"] = display_df["Lock:Emission"].apply(
         lambda x: "∞" if x == float("inf") else f"{x:.0f}:1"
     )
-    display_df["Inflation (%)"] = display_df["Inflation (%)"].apply(lambda x: f"{x:.2f}%")
+    display_df["Inst. Inflation (%)"] = display_df["Inst. Inflation (%)"].apply(lambda x: f"{x:.2f}%")
     display_df["Reserve (M FIL)"] = display_df["Reserve (M FIL)"].apply(lambda x: f"{x:.1f}")
     display_df["Runway (yrs)"] = display_df["Runway (yrs)"].apply(
         lambda x: "∞" if x == float("inf") else f"{x:.0f}"
