@@ -2,6 +2,8 @@
 
 A rigorous cryptoeconomic modeling tool for vote-escrowed FIL (veFIL) token-locking mechanisms.
 
+Live here: https://vefil-workbench.streamlit.app/
+
 ## Overview
 
 This Python application provides a comprehensive simulation and analysis platform for evaluating veFIL tokenomics. It models:
