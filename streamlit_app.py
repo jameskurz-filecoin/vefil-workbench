@@ -1284,7 +1284,10 @@ def render_milestone_summary(result):
 
     st.markdown("### Milestone Summary")
     st.caption(
-        "Key metrics at each milestone. **Emissions** = annual FIL emitted from reserve. "
+        "Results reflect moderate assumptions. Use sidebar controls or scenario presets to test alternatives."
+    )
+    st.caption(
+        "**Emissions** = annual FIL emitted from reserve. "
         "**APY** = emissions / effective weighted locked. "
         "**Lock:Emission** = locked FIL / emissions (higher = more lock per unit inflation)."
     )

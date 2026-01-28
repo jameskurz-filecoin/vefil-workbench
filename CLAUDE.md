@@ -2,33 +2,28 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Design Objectives (IMPORTANT)
+## Evaluation Benchmarks
 
-**When making changes to the model or parameters, these constraints MUST be satisfied:**
+**These represent the FIP authors' view of healthy program traction. The base case produces outcomes in these ranges under moderate assumptions.**
 
-### Target Outcomes (at default settings)
-| Metric | Target | Rationale |
-|--------|--------|-----------|
+### Adoption Benchmarks
+| Metric | Range | Rationale |
+|--------|-------|-----------|
 | **Locked @ 3 months** | 30-40M FIL | Reasonable early adoption ramp |
 | **Locked @ 6 months** | 60-80M FIL | Continued growth trajectory |
 | **Locked @ 12 months** | 100-150M FIL | Meaningful protocol adoption |
 | **APY floor** | 8-9%+ | Must stay competitive with alternatives (iFIL ~9%) |
-| **Inflation** | Strongly negative early, ≤0% throughout | Deflationary or neutral, never inflationary |
-| **Reserve runway** | ~20 years | Sustainable but not over-engineered |
+| **Inflation** | Negative to neutral | Deflationary or neutral throughout simulation |
+| **Reserve runway** | ~20 years | Sustainable long-term operation |
 
 ### Model Philosophy
 1. **Pure reserve emissions only** - Yield comes from mining reserve, not fee rewards or hybrid models
-2. **APY must pass the smell test** - Numbers should be logical relative to locked amounts
+2. **APY must remain competitive** - Must exceed alternative yields to attract capital
 3. **Emissions policy enabled** - Dynamically adjusts reserve rate to maintain APY floor
-4. **Early APY will be higher** - Fewer lockers = bigger share of rewards (early adopter premium). This is correct.
-5. **Don't over-optimize runway** - 20 years is fine; 100+ years is unnecessary
+4. **Early APY will be higher** - Fewer lockers = bigger share of rewards (early adopter premium)
 
-### What to Avoid
-- Hybrid yield models mixing reserve and fee rewards
-- APY falling below competing alternatives (iFIL, DeFi lending)
-- Positive inflation at any point in the simulation
-- Unrealistic locked amounts (too fast or too slow ramp)
-- Over-engineering for extreme runway lengths
+### On Assumptions
+Token-locking mechanisms have limited empirical precedent. Parameters like required yield premium and participation elasticity are informed judgments, not measured values. This tool exists precisely because reasonable people may disagree on inputs. Use the scenario presets and sidebar controls to test alternative assumptions.
 
 ---
 

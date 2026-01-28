@@ -1,11 +1,8 @@
 # Default configuration parameters for veFIL Tokenomics Workbench
 #
-# This configuration achieves (pure reserve emissions):
-# - 30M locked @ 3 months, 79M @ 6 months, 112M @ 12 months
-# - APY: 12-13% stable (stays above 8% floor)
-# - Inflation: strongly negative throughout (-28% early, -0.2% steady-state)
-# - Reserve runway: ~20 years
-# - Emissions policy dynamically adjusts rate to maintain APY floor
+# Moderate adoption assumptions for veFIL simulation.
+# Parameters reflect informed judgment given limited empirical precedent.
+# Use scenario presets or sidebar controls to test alternative assumptions.
 
 # Initial supply state (Filecoin, Jan 2026)
 # Conservation: total = circulating + reserve + other_allocations + lending_pool + sp_collateral + locked_vefil
