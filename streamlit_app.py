@@ -1233,9 +1233,6 @@ def render_fip_summary(result):
 
     st.markdown("### Model Assumptions")
 
-    # Calculate max lockable FIL
-    max_lockable = cfg.initial_supply.circulating * cfg.simulation.addressable_cap / 1e6
-
     # Build clean summary
     col1, col2 = st.columns(2)
 
@@ -1244,7 +1241,6 @@ def render_fip_summary(result):
         st.markdown(f"""
 - Circulating supply: **{cfg.initial_supply.circulating/1e6:.0f}M FIL**
 - Mining reserve: **{cfg.initial_supply.reserve/1e6:.0f}M FIL**
-- Max lockable: **{max_lockable:.0f}M FIL** ({cfg.simulation.addressable_cap*100:.0f}% of circulating)
         """)
 
         st.markdown("**Emissions Policy**")
